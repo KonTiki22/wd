@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задание 2.2</title>
+	<link rel="stylesheet" type="text/css" href="taskstyle.css">
+</head>
+<body>
+<div id = "form">
+	<h2>Задание 3.2</h2>
+	<p>3.2. Создать web-страницу, в которой отображается таблица умножения для чисел от 1 до 10.</p>
+</div>
+<script>
+	function GenerateTable() {
+		var table = "<table>\n";
+		table += "<caption>Таблица умножения</caption>\n";
+		table += "<tr><th> </th>";
+		for (i = 1; i <=10; i++) table += "<th>"+i+"</th>";
+		table += "</tr>";
+		for (i = 1; i <=10; i++) 
+		{ 
+			table += "<tr><th>" + i + "</th>"; 
+			for (j = 1; j <= 10; j++) 
+			{ 
+				table += "<td>" + (i*j) + "</td>";
+			} 
+			table += "</tr>";
+		}
+		return table;
+	}
+	form = document.getElementById("form");
+	form.innerHTML += GenerateTable();
+
+</script>
+</body>
+</html>

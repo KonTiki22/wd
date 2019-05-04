@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задание 2.2</title>
+	<link rel="stylesheet" type="text/css" href="taskstyle.css">
+</head>
+<body>
+<div id = "form">
+	<h2>Задание 3.2</h2>
+	<p>3.2. Создать web-страницу, в которой отображается таблица умножения для чисел от 1 до 10.</p>
+</div>
+<table> 
+<script language="JavaScript"> 
+document.write("<tr><td> </td>"); 
+for (i = 1; i <=10; i++) document.write("<td>"+i+" </td>"); 
+document.write("</tr>"); 
+for (i = 1; i <=10; i++) 
+{ 
+document.write("<tr><td>" + i + " </td>"); 
+for (j = 1; j <= 10; j++) 
+{ 
+document.write("<td bgcolor='#00ffa0'>" + (i*j) + " </td>");} 
+document.write("</tr>"); 
+} 
+ 
+</script> 
+</table>
+<script>
+	function GenerateCalendar() {
+		var table = document.createElement('table');
+		var caption = document.createElement('caption');
+		table.appendChild(caption);
+		caption.innerHTML = "Table";
+		table.innerHTML += "<tbody>";
+		//table.innerHTML += "<tr><td> </td>";
+		//for (i = 1; i <=10; i++) table.innerHTML += "<td>"+i+" </td>";
+		for(i=1;i<=10;++i) {
+			var tr = document.createElement('tr');
+			table.appendChild(tr);
+			var sw = false;
+			for(j=1;j<=10;++j) {
+				var td = document.createElement('td');
+				if(j*i == j || j*i == i ) {
+					td.innerHTML = `<b>${j*i}</b>`;
+				} else {
+					td.innerHTML = j*i;
+				}
+				
+				tr.appendChild(td);
+			}
+
+		}
+		return table;
+	}
+	form = document.getElementById("form");
+	form.appendChild(GenerateCalendar());
+
+</script>
+</body>
+</html>

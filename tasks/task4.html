@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задание 2.4</title>
+	<link rel="stylesheet" type="text/css" href="taskstyle.css">
+	<style>
+		#win{
+			width: 600px;
+			height: 300px;
+			border: solid 2px;
+			margin: auto;
+			margin-bottom: 10px;
+			text-align: left;
+
+		}
+		#par {
+			text-align: left;
+			width: 600px;
+			margin: auto;
+		}
+		#hamb {
+			height: 100%;
+			width: 50%;
+		}
+		#hamb,#filling,#spma {
+			float:left;
+			border: solid 3px;
+			box-sizing: border-box;
+
+		}
+		#filling,#spma {
+			height: 50%;
+			width: 50%;
+		}
+		.fopt {
+			margin-left: 0px;
+		}
+		#small {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+<div id = "form">
+	<h2>Задание 3.4</h2>
+	<p>3.4. Сеть фастфудов</p>
+	<br>
+
+	<form id="win">
+		<div id="hamb">
+			<select id="menu">
+		  		<option>Большой</option>
+		  		<option>Маленький</option>
+			</select>
+			<div id="big">
+				<p>Большой гамбургер (100 тугриков, 40 ккал)</p>
+			</div>
+			<div id="small">
+				<p>Маленький гамбургер (50 тугриков, 20 ккал)</p>
+			</div>
+		</div>
+		<div id="filling">
+			<div class="fopt"><input type="radio" name="fill" value="cheese" checked>сыр (+ 10 тугриков, + 20 ккал)</div>
+			<div class="fopt"><input type="radio" name="fill" value="salad">салат (+ 20 тугриков, + 5 ккал)</div>
+			<div class="fopt"><input type="radio" name="fill" value="potato">картофель (+ 15 тугриков, + 10 ккал)</div>
+		</div></p>
+		<div id="spma">
+			<div><input type="checkbox" name="sp" value="spice">посыпать приправой (+ 15 тугриков, 0 ккал)</div>
+			<div><input type="checkbox" name="sp" value="mayo">полить майонезом (+ 20 тугриков, + 5 ккал)</div>
+		</div>
+	</form>
+	<input type="button" id="btn" value="Рассчитать заказ">
+	<p id = "par"></p>
+</div>
+<script>
+function hambType() {
+	switch(this.value) {
+		case "Большой": {
+			big.style.display = "block";
+			small.style.display = "none";
+			ht = "big";
+			break;
+		}
+		case "Маленький": {
+			big.style.display = "none";
+			small.style.display = "block";
+			ht = "small";
+			break;
+		}
+	}
+	console.log(order);
+}
+var ht = "big";
+
+var components = {
+	big:{calories:40,price:100, toString:()=>{return "Большой гамбургер"}},
+	small:{calories:20,price:50,toString:()=>{return "Маленький гамбургер"}},
+	cheese:{calories:20,price:10, toString:()=>{return "сыром"}},
+	salad:{calories:5,price:20, toString:()=>{return "салатом"}},
+	potato:{calories:10,price:15, toString:()=>{return "картофелем"}},
+	spice:{calories:0,price:15, toString:()=>{return "специями"}},
+	mayo:{calories:5,price:20, toString:()=>{return "майонезом"}},
+}
+function makeOrder() {
+	order.hambType = components[ht];
+	order.price = order.hambType.price;
+	order.calories = order.hambType.calories;
+	message = `Ваш заказ: ${order.hambType} c `;
+	for(elem of fllist) {
+		if(elem.checked) {
+			order.filling = components[elem.value];
+			message += order.filling;
+			order.price += order.filling.price;
+			order.calories += order.filling.calories;
+		}
+	}
+	order.extra = [];
+	for(elem of cklist) {
+		if(elem.checked) {
+			order.extra.push(components[elem.value]);
+			message += `, ${components[elem.value]}`;
+			order.price += components[elem.value].price;
+			order.calories += components[elem.value].calories;
+		}
+	}
+	var rep = " и";
+	message = message.replace(/,([^,]*)$/,rep+'$1');
+	message += `.<br>Калорийность: ${order.calories} ккал.<br>Итого к оплате: ${order.price} тугриков.`
+	order.price = order.hambType.price + order.filling.price;
+	par.innerHTML = message;
+}
+
+var order = {hambType:components[ht]};
+var menu = document.getElementById("menu");
+var fllist = document.getElementsByName("fill");
+var cklist = document.getElementsByName("sp");
+
+menu.onchange = hambType;
+btn = document.getElementById("btn");
+btn.onclick = makeOrder;
+
+//btn.addEventListener("click", num, false);
+
+</script>
+</body>
+</html>

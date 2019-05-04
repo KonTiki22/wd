@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задание 2.2</title>
+	<link rel="stylesheet" type="text/css" href="taskstyle.css">
+	<style>
+		p {
+			margin: 40px auto;
+		}
+		td {
+			width: 100px;
+			height: 40px;
+			text-align: left;
+		}
+	</style>
+</head>
+<body>
+<div id = "form">
+	<h2>Задание 3.5</h2>
+	<p>3.5. Создайте приложение, содержащее слова «Один», «Два», «Три». При наведении мыши на любое из слов, оно увеличивается в размерах, отображаясь на том же самом месте.</p>
+	<table>
+		<tr>
+			<td>Один</td>
+		</tr>
+		<tr>
+			<td>Два</td>
+		</tr>
+		<tr>
+			<td>Три</td>
+		</tr>
+	</table>
+	<!--<ul>
+		<li>Один</li>
+		<li>Два</li>
+		<li>Три</li>
+	</ul>-->
+</div>
+<script>
+	list = document.getElementsByTagName("td");
+	for(td of list) {
+		td.style.transition = "0.5s";
+		td.onmouseover = function() {this.style.fontSize = "1.5em";}
+		td.onmouseout = function() {this.style.fontSize = "1em";}
+	}
+	console.log(list);
+
+</script>
+</body>
+</html>

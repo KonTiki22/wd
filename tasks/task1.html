@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">	
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задание 2.1</title>
+	<link rel="stylesheet" type="text/css" href="taskstyle.css">
+</head>
+<body>	
+<div id = "form">
+	<h2>Задание 3.1</h2>
+	<p>3.1. Создать web-страницу, в которой отображается календарь на текущий месяц в виде таблицы.</p>
+	<table id="t">
+	</table>
+</div>
+<script>
+	"use strict";
+	function Calendar() {
+		this._dateObj = new Date();
+		this.daysOfweek = ["Понедельник","Вторник","Среда","Четверг","Пятница","Суббота","Воскресенье"];
+		this.daysOfweek2 = ["Пн","Вт","Ср","Чт","Пт","Сб","Вс"];
+		this.months = ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
+		this.getDayOfWeek = function(cut) {
+			if(cut == 1) {
+				return this.daysOfweek2[this._dateObj.getDay()-1];
+			}
+			return this.daysOfweek[this._dateObj.getDay()-1];
+		};	
+		this.getDate = function() {
+			return this._dateObj.getDate();
+		};	
+		this.getMonth = function() {
+			return this.months[this._dateObj.getMonth()];
+		};
+
+		this.DaysInMonth = function() {
+			return 33 - new Date(this._dateObj.getFullYear(), this._dateObj.getMonth(), 33).getDate();
+		};
+	}
+
+	function GenerateCalendar() {
+		var calendar = new Calendar();
+		//calendar._dateObj = new Date(2019,0,20);
+		//var table = document.createElement('table');
+		var table = document.getElementById("t");
+		console.log(form.innerHTML);
+		//var tfoot = document.createElement('tfoot');
+		var caption = document.createElement('caption');
+		table.appendChild(caption);
+		caption.innerHTML = `${calendar.getMonth()} ${calendar._dateObj.getFullYear()}`;
+		//table.caption.innerHTML = `${calendar.getMonth()} ${calendar._dateObj.getFullYear()}`;
+		var tr = document.createElement('tr');
+		table.appendChild(tr);
+		for(i=0;i<7;++i) {
+			var th = document.createElement('th');
+			th.innerHTML = calendar.daysOfweek2[i];
+			tr.appendChild(th);
+		}
+
+		var start = 7 - (calendar.getDate() - calendar._dateObj.getDay())%7;
+		start = start == 7? 0:start;
+		var count = 1;
+		for(var i=0;i<5;++i) {
+			var tr = document.createElement('tr');
+			for(var j=0;j<7;++j) {
+				var dt = count-start;
+				var td = document.createElement('td');
+				if (count>start && dt <= calendar.DaysInMonth()) {
+					td.innerHTML = dt;
+					if(dt == calendar.getDate()) {
+						td.style.background = 'rgb(154, 202, 250)';
+						//td.style.borderRadius = '50%';
+					}
+				}
+				tr.appendChild(td);
+				count++;
+			}
+			table.appendChild(tr);
+		}
+		console.log(table.innerHTML);
+		table.caption.innerHTML = `${calendar.getMonth()} ${calendar._dateObj.getFullYear()}`;
+		var tr = document.createElement('tr');
+		td.innerHTML = (`${calendar.getDayOfWeek()}, ${calendar.getDate()} 
+			${calendar.getMonth()} ${calendar._dateObj.getFullYear()}`);
+		td.setAttribute('colspan', '7');
+		tr.appendChild(td);
+		table.appendChild(tr);
+		return table;
+	}
+	var form = document.getElementById("form");
+	form.appendChild(GenerateCalendar());
+
+
+	//console.log(calend.getDayOfWeek(),calend.getMonth(),calend.getDate());
+
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Задание 3.7</title>
+	<link rel="stylesheet" type="text/css" href="taskstyle.css">
+	<style>
+		#obj {
+			width: 100px;
+			height: 100px;
+			background-color: #55f;
+			position: absolute;
+		}
+		#surf {
+			width: 100%;
+			height: 500px;
+			border: solid 2px;
+		}
+	</style>
+</head>
+<body>
+<div id = "form">
+	<h2>Задание 3.7</h2>
+	<p>3.7. Реализовать линейное движение. Оно реализуется 2-мя функциями. Первая функция осуществляет подготовку исходных данных и вызывает метод setInterval(), где в качестве второго параметра указывается вторая функция, реализующая движение.  В ней изменяются значения top и left стиля перемещаемого элемента.</p>
+	<br>
+	<div id="surf">
+		<div id="obj"></div>
+	</div>
+<script>
+function dragObj(obj,parent, x, y) {
+	var rect = parent.getBoundingClientRect();
+	if(rect.left<x-50 && x+50<rect.left+rect.width) {
+		obj.style.left = `${x-obj.offsetWidth/2}px`;
+	} else if(rect.left>x-50) {
+		obj.style.left = `${rect.left}px`;
+	} else if(x+50>rect.left+rect.width) {
+		obj.style.left = `${rect.left+rect.width-100}px`
+	}
+	if(rect.top<y-50 && y+50<rect.top+rect.height) {
+	    obj.style.top = `${y-obj.offsetHeight/2}px`;
+	} else if(rect.top>y-100) {
+		obj.style.top = `${rect.top}px`;
+	} else if((y+100)>rect.top+rect.height) {
+		obj.style.top = `${rect.top+rect.height-100}px`
+	}
+}
+var x, y;
+var obj = document.getElementById("obj");
+var surf = document.getElementById("surf");
+obj.onmousedown = ()=>{timer = setInterval("dragObj(obj,surf, x, y)",10)};
+document.onmouseup = ()=>{clearTimeout(timer)};
+surf.onmousemove = function(e) {
+	//console.log(e);
+	x = e.pageX;
+	y = e.pageY;
+}
+</script>
+</body>
+</html>

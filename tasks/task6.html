@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задание 2.2</title>
+	<link rel="stylesheet" type="text/css" href="taskstyle.css">
+	<style>
+		#text {
+			width: 90%;	
+			height: 300px;	
+			border: solid 20px;
+			margin: auto;
+			transition: 0.1s;
+			padding: 20px;
+			overflow: auto;
+		}
+	</style>
+</head>
+<body>
+<div id = "form">
+	<h2>Задание 3.6</h2>
+	<p>3.6. Создайте приложение, отображающее текст в рамке, и содержащее 2 кнопки «Начать» и «Остановить». При щелчке по первой кнопке цвет рамки меняется произвольным образом (переливается всеми цветами радуги). При щелчке по второй кнопке этот процесс прекращается.</p>
+	<div id="text">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit sequi vel eveniet, aliquid, ullam optio. Amet in ducimus consectetur harum. Cupiditate quo quam, inventore. Saepe alias, vel laboriosam. Voluptas, quas.</p>
+		<p>Eveniet veritatis fugiat alias atque minima dignissimos quae, ab sint maxime quidem ea facere a enim molestiae deleniti, cupiditate neque quasi eligendi. Molestias fugiat, praesentium quibusdam tenetur similique repudiandae quam?</p>
+		<p>Eum modi cumque quidem reiciendis consequuntur velit totam aliquid, ratione, quos a! Perferendis modi, reprehenderit, ipsa totam ipsum praesentium laborum eveniet odit autem facilis cumque quis corporis, dicta eius ut?</p>
+		<p>Quod veritatis veniam quia ex culpa natus dolor distinctio. Saepe, est sequi quo nihil voluptatibus laborum explicabo ad tempore quaerat placeat nesciunt neque similique consequatur incidunt quidem id repellat, cum?</p>
+		<p>Minima consequuntur ipsam repellat necessitatibus alias. Alias, reiciendis tempore mollitia, omnis ea totam ipsa nobis corrupti veritatis sit voluptates ipsum labore iure explicabo modi delectus id animi. Sapiente qui, porro.</p>
+		<p>Nobis natus nostrum perspiciatis similique soluta provident, recusandae saepe quia quaerat quo blanditiis voluptatem cum porro error illum possimus quod, quos qui non maiores quas dignissimos laboriosam ratione neque amet.</p>
+	</div>
+	<input type="button" id="btn" value="Начать">
+	<br>
+	<input type="button" id="btn2" value="Остановить">
+</div>
+<script>
+function start(elem) {
+	elem.style.borderColor = `rgb(${Math.random()*255},${Math.random()*255},${Math.random()*255})`;
+}
+
+var btn = document.getElementById("btn");
+var btn2 = document.getElementById("btn2");
+var text = document.getElementById("text");
+var timer = null;
+btn.onclick = ()=>{timer = setInterval("start(text)",100);}
+btn2.onclick = ()=>{clearTimeout(timer);}
+//btn2.onclick = end;
+
+</script>
+</body>
+</html>

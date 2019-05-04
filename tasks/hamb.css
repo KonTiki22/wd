@@ -1,0 +1,100 @@
+.canvas {
+  width: 100%;
+  height: 80%;
+  margin: auto;
+}
+
+.burger {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.shadow {
+  /*position: absolute;*/
+  bottom: 8%;
+  left: 0;
+  width: 100%;
+  height: 10%;
+  background: #a23f18;
+  border-radius: 50%;
+}
+
+.bun.top {
+  /*position: absolute;*/
+  top: 21%;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(to right, #f7bc50 60%, #e3ac4b 60%);
+  border-radius: 200px/100px 100px 0 0;
+  overflow: hidden;
+}
+
+
+.bun.top span {
+  display: block;
+  /*position: absolute;*/
+  width: 2%;
+  height: 7%;
+  background: #fbd695;
+  border-radius: 40%;
+}
+
+.top span:nth-child(1) {
+  top: 23%;
+  left: 15%;
+  transform: rotate(30deg);
+}
+
+
+.tomatoes {
+
+  top: 51%;
+  left: 2%;
+  width: 96%;
+  height: 3%;
+  background: linear-gradient(to right, #bd131d 58%, #970b19 58%);
+  border-radius: 10%;
+}
+
+.patty {
+  /*position: absolute;*/
+  top: 59%;
+  left: 2%;
+  width: 95%;
+  height: 13%;
+  background: linear-gradient(to right, #8c582b 62%, #7e4e29 62%);
+  border-radius: 20px;
+}
+
+
+.lettuce {
+  /*position: absolute;*/
+  top: 72%;
+  left: 2%;
+  width: 96%;
+  height: 2%;
+  background: linear-gradient(to right, #9fb331 59%, #8fa22f 59%);
+  border-radius: 10%;
+}
+
+.bun.bottom {
+  /*position: absolute;*/
+  top: 74%;
+  width: 100%;
+  height: 13%;
+  background: linear-gradient(to right, #f7bc50 60%, #e3ac4b 60%);
+  border-radius: 20px;
+}
+
+
+.cheese {
+  position: absolute;
+  top: 54%;
+  left: 2%;
+  width: 96%;
+  height: 5%;
+  background: linear-gradient(to right, #fdde03 59%, #fbc000 59%);
+  border-radius: 15%;
+}

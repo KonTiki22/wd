@@ -1,0 +1,114 @@
+
+
+
+body{
+	font-family: "Roboto", sans-serif, Helvetica, Arial;
+}
+
+
+#form {
+
+	margin: 12vh auto;
+	width: 70%;
+	max-width: 800px;
+	min-height: 50vh;
+	background: #fcfcfc;
+	text-align: center;
+	padding: 20px;
+	box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+}
+
+[type="number"],[type="text"],[type="button"] {
+	box-sizing: border-box;
+	width: 200px;
+	padding: 0px;
+   font: inherit;
+   font-size: 14px;
+}
+
+
+[type="number"],[type="text"],select {
+	width: 190px;
+	height: 25px;
+   border: 1px solid grey;
+   border-radius: 5px;
+   margin: 5px auto;
+   padding-left: 0.5em;
+}
+
+select {
+	width: 130px;
+	height: 28px;
+}
+
+
+[type="button"] {
+	cursor: pointer;
+   display: inline-block;
+   text-align: center;
+   text-decoration: none;
+   margin: 2px 0 4px -6px;
+   border: solid 2px transparent;
+   border-radius: 4px;
+   padding: 0.5em 1em;
+   color: #eee;
+   font-size: 14px;
+   background-color: rgb(4, 180, 65);
+   box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.5);
+   outline: none;
+}
+
+[type="button"]:hover {
+   color: #fff;
+   /*border-color: currentColor;*/
+   background-color: rgb(40, 120, 77);
+   box-shadow: none;
+}
+
+[type="button"]:active  {
+	background: rgb(190, 50, 0);
+	color: #fff;
+}
+
+
+#btn2 {
+	margin: 2px 0 0 -10px;
+}
+
+
+h2 {
+	font-size: 24px;
+	color:#222;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+p {
+	margin-top: 20px;
+}
+
+ol,ul {
+	display: inline-block;
+	/*counter-reset: myCounter;*/
+	/*list-style: none;*/
+	text-align: left;
+	margin:0;
+}
+
+
+caption {
+	font-size: 1.4em;
+}
+table {
+	border-spacing: 0px;
+	border: 0px;
+	margin: 40px auto;
+} 
+th, td {
+	width: 30px;
+	height: 30px;
+}
+th {
+	background: rgb(154, 202, 250);
+}
+

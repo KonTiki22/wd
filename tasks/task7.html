@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Задание 3.7</title>
+	<link rel="stylesheet" type="text/css" href="taskstyle.css">
+	<style>
+		#obj {
+			width: 100px;
+			height: 100px;
+			background-color: #55f;
+			position: relative;
+			transition: 0.1s;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+<div id = "form">
+	<h2>Задание 3.7</h2>
+	<p>3.7. Реализовать линейное движение. Оно реализуется 2-мя функциями. Первая функция осуществляет подготовку исходных данных и вызывает метод setInterval(), где в качестве второго параметра указывается вторая функция, реализующая движение.  В ней изменяются значения top и left стиля перемещаемого элемента.</p>
+	<br>
+	<div id="obj"></div>
+	<input type="button" id="btn" value="Начать движение">
+	<br>
+	<input type="button" id="btn2" value="Остановиться">
+<script>
+function move(object) {
+	object.style.backgroundColor = `rgb(${Math.random()*255},${Math.random()*255},${Math.random()*255})`;
+	object.style.left = `${i<740? i+=3 : i-=3}px`;
+}
+
+var btn = document.getElementById("btn");
+var btn2 = document.getElementById("btn2");
+var obj = document.getElementById("obj");
+var timer = null;
+var i = 0;
+btn.onclick = ()=>{timer = setInterval("move(obj)",100);}
+btn2.onclick = ()=>{clearTimeout(timer);}
+</script>
+</body>
+</html>

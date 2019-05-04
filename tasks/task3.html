@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задание 3.3</title>
+	<link rel="stylesheet" type="text/css" href="taskstyle.css">
+	<link rel="stylesheet" type="text/css" href="calcstyle.css">
+</head>
+<body>
+<div id = "form">
+	<h2>Задание 3.3</h2>
+	<p>3.3. Создать web-страницу калькулятор, производящий основные арифметические операции.</p>
+	<div id="calculator">
+		<p align="right" id="result">&nbsp</p>
+		<p align="right" id="exp">0</p>
+		<input type="button" class="calc-button op" id="(" value="(">
+		<input type="button" class="calc-button op" id=")" value=")">
+		<input type="button" class="calc-button op" id="^" value="^">
+		<input type="button" class="calc-button op" id="c" value="c">
+		<br>
+		<input type="button" class="calc-button" id="1" value="1">
+		<input type="button" class="calc-button" id="2" value="2">
+		<input type="button" class="calc-button" id="3" value="3">
+		<input type="button" class="calc-button op" id="/" value="/">
+		<br>
+		<input type="button" class="calc-button" id="4" value="4">
+		<input type="button" class="calc-button" id="5" value="5">
+		<input type="button" class="calc-button" id="6" value="6">
+		<input type="button" class="calc-button op" id="x" value="x">
+		<br>
+		<input type="button" class="calc-button" id="7" value="7">
+		<input type="button" class="calc-button" id="8" value="8">
+		<input type="button" class="calc-button" id="9" value="9">
+		<input type="button" class="calc-button op" id="-" value="-">
+		<br>
+		<input type="button" class="calc-button" id="." value="." style="font-weight: bold;">
+		<input type="button" class="calc-button" id="0" value="0">
+		<input type="button" class="calc-button" id="res" value="=">
+		<input type="button" class="calc-button op" id="+" value="+">
+	</div>
+			
+</div>
+<script>
+	var exp = document.getElementById("exp");
+	var result = document.getElementById("result");
+	var countBr = 0;
+    var switchDot = true;
+
+    function ckZero(expression)
+    {
+    	var op = ["/","*","-","+","^"];
+    	if(expression.slice(-1) == "0" &&
+		 	(!expression.slice(-2,-1) || 
+		 	op.indexOf(expression.slice(-2,1)) != -1)) 
+		{
+			return expression.slice(0,-1);
+		}
+		return expression;
+	}
+
+	function addSymbol()
+	{	
+		var op = ["/","x","-","+","^","(","."];
+		if(this.value == "c") 
+		{
+			result.innerHTML = "&nbsp";
+			exp.innerHTML = "0";
+			return;
+		}
+		if (this.value=="=" && !countBr && (exp.innerHTML.slice(-1) == ")" || !isNaN(exp.innerHTML.slice(-1)))) 
+		{
+			var res = exp.innerHTML.replace(/\^/g, "**");
+			res = res.replace(/x/g, "*");
+			console.log(res);
+			result.innerHTML = `${exp.innerHTML} = `;
+			exp.innerHTML = `${eval(res)}`;
+			return;
+		}
+		if(!isNaN(+this.value) && exp.innerHTML.slice(-1) != ")") 
+		{
+			exp.innerHTML = ckZero(exp.innerHTML);
+			exp.innerHTML += this.value;
+		}
+		else if(this.value == "(") 
+		{
+			if(op.indexOf(exp.innerHTML.slice(-1)) != -1 && exp.innerHTML.slice(-1) != ".") 
+			{
+				exp.innerHTML += this.value;
+				++countBr;
+			}
+		}
+		else if(this.value == ")") 
+		{
+			if(op.indexOf(exp.innerHTML.slice(-1)) == -1 && countBr) 
+			{
+				exp.innerHTML += this.value;
+				--countBr;
+			}
+		}
+		else if(exp.innerHTML.slice(-1) == "(" && this.value == "-")
+		{
+			exp.innerHTML += this.value;
+		} 
+		else if (op.indexOf(exp.innerHTML.slice(-1)) == -1 && op.indexOf(this.value) != -1)
+		{
+			if(this.value == ".") 
+			{
+				if(switchDot) 
+				{
+					exp.innerHTML += this.value;
+					switchDot = false;
+				}
+			} 
+			else 
+			{
+				switchDot = true;
+				exp.innerHTML += this.value;
+			}
+		}
+			
+	}
+	b = document.getElementsByTagName("input");
+	for(elem of b) {
+		elem.onclick = addSymbol;
+	}
+
+</script>
+</body>
+</html>
